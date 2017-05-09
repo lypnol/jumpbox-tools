@@ -17,16 +17,13 @@ _ji() {
         typeset -g -a _instanceslist
         if ( (( #_instanceslist == 0 )) || _cache_invalid instances) \
                 && ! _retrieve_cache instances; then
-
                 _instanceslist=()
                 echo
                 echo "Building the instances completion index (cache outdated), this should take a short while"
-                for entry in `consulkv services:catalog | grep '"ServiceID":"datadog"'`
+
+                for entry in $(consul-cli catalog service datadog | jq -r -c ".[] | .Node + \":\" + (.ServiceTags | map( select(. != \"dd-process-agent\" and (contains(\"canary\") | not) and . != \"go-perf\" and . != \"base\" and (contains(\"az-\") | not) ) ) | join(\",\"))")
                 do
-                        echo -n "."
-                        NODE_ID=`echo $entry | jq -r .Node`
-                        DESCRIPTION=`echo $entry | jq -r '.ServiceTags | join("\n")' | grep -vE '^(chef-client|az-|use-ctx-pshard|use-master-proxy)' | paste -s -d ',' -`
-                        _instanceslist+=( "$NODE_ID:$DESCRIPTION" )
+                    _instanceslist+=( "$entry" )
                 done
                 echo "DONE. BACK TO WORK!"
                 echo
