@@ -7,7 +7,7 @@ environmentuc(){
 }
 
 mainroles(){
-    cat /etc/update-motd.d/95-roles | tail -n+6 | grep -vE 'Tags:' | grep -vE '^Instance Type:|^\*\*|^$' | grep -vE '^AZ: ' | grep -Ev 'common-node|monitoring-client|dog-base|encrypted-storage' | paste -d',' -s -
+    cat /etc/update-motd.d/95-roles | tail -n+6 | grep -vE 'Tags:' | grep -vE '^Instance Type:|^\*\*|^$' | grep -vE '^AZ: ' | grep -Ev 'agent-prod-to-staging|canary-security-logging|common-node|dog-base|encrypted-storage|go-perf|monitoring-client' | paste -d',' -s -
 }
 
 refreshtools(){
