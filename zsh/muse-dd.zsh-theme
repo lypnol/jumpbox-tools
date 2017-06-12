@@ -40,7 +40,7 @@ function get_hostname() {
 
     if [[ $envname == *"No such file"* ]] || [[ $envname == "dev" ]]
     then
-        if [[ $host == "ubuntu-1204" ]]
+        if [[ $host == "ubuntu-1404" ]]
         then
             echo "%{$C_YELLOW%}""vm""%{$C_RESET%}";
             return;
