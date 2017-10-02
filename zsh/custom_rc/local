@@ -1,3 +1,4 @@
 export GOPATH=$HOME/datadog/vm/go
 export GOBIN=$GOPATH/bin_mac
 export PATH=$PATH:$GOBIN
+export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
