@@ -24,7 +24,7 @@ deploytools(){
 }
 
 jr(){
-    IP=$(/usr/local/bin/consulkv services:catalog | jq --compact-output '{ServiceName, Address}' | grep herc | sort | jq -r .Address | head -1)
+    IP=$(/usr/local/bin/consulkv services:catalog | jq --compact-output '{ServiceName, Address}' | grep "$1" | sort | jq -r .Address | head -1)
     deploytools $IP
     ssh -A $IP
 }
