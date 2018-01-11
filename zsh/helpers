@@ -25,6 +25,10 @@ deploytools(){
 
 jr(){
     IP=$(/usr/local/bin/consulkv services:catalog | jq --compact-output '{ServiceName, Address}' | grep "$1" | sort | jq -r .Address | head -1)
+    if [ -z "$IP" ]; then
+        # Search on tags instead
+        IP=$(/usr/local/bin/consulkv services:catalog | jq --compact-output '{ServiceTags, Address}' | grep "$1" | sort | jq -r .Address | head -1)
+    fi;
     deploytools $IP
     ssh -A $IP
 }
@@ -42,7 +46,6 @@ pg() {
     sudo -u postgres psql -p 5433 dogdata$(environmentlc)
 }
 
-# Thanks @miketheman
 howold ()
 {
     if [ -f /etc/created ]; then
