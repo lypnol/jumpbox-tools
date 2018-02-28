@@ -16,4 +16,4 @@ eval "$(gimme 1.9.1)"
 # Aliases
 alias supe="supervisorctl"
 alias goforit="cd \$GOPATH/src/github.com/DataDog/dd-go"
-alias gocheck="go fmt ./... && go tool vet -assign -shadow -bool -atomic -buildtags -composites -methods -printf -structtags -shift -unreachable -unsafeptr -rangeloops . && golint && echo 👍"
+alias gocheck="go fmt ./... && go tool vet -assign -shadow -bool -atomic -buildtags -composites -methods -printf -structtags -shift -unreachable -unsafeptr -rangeloops . 2>&1 | grep -v assert || true && golint"
