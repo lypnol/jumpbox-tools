@@ -3,7 +3,7 @@ source $HOME/python/bin/activate && cd $HOME/dogweb
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export NODEPATH=$HOME/dogweb/node_modules
-export PATH=~/bin:$GOBIN:$PATH:$NODEPATH/.bin/
+export PATH=~/bin:$GOBIN:$PATH:$NODEPATH/.bin/:~/usr/bin
 
 export _Z_DATA=$HOME/.user-config/.z
 
