@@ -51,9 +51,9 @@ function get_hostname() {
     fi
     if [[ "$envname" == "staging" ]]
     then
-        echo "$datetime $host %{$C_MAGENTA%}""$host_role""%{$C_RESET%}";
+        echo "$datetime %{$C_MAGENTA%}""$host_role""%{$C_RESET%}";
     else
-        echo "$datetime $host %{$C_YELLOW%}""$host_role""%{$C_RESET%}";
+        echo "$datetime %{$C_YELLOW%}""$host_role""%{$C_RESET%}";
     fi
 }
 
