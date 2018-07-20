@@ -11,7 +11,7 @@ cd ~
 # Don't delete .ssh otherwise you cannot get in!!
 rm -rf .bin* .cache* .chef* .config* .lesshst .oh-my-zsh .zcomp* .zsh*
 # In case we are re-running it
-rm -rf .jumpbox-tools
+rm -rf .jumpbox-tools .oh-my-zsh
 
 # Clone ourselves
 git clone https://github.com/lypnol/jumpbox-tools.git ~/.jumpbox-tools
