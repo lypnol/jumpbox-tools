@@ -10,7 +10,7 @@ C_DEFAULT=$FG[004]
 C_PROMPT=$FG[002]
 C_YELLOW=$FG[003]
 C_MAGENTA=$FG[005]
-BC_DRED=$BG[006]
+C_DRED=$FG[006]
 
 PROMPT_FAILURE_COLOR=$FG[001]
 PROMPT_VCS_INFO_COLOR=$FG[002]
@@ -43,7 +43,7 @@ function get_hostname() {
     then
         if [[ $host == "dogbox" ]]
         then
-            echo "%{$BC_DRED%}""vm""%{$C_RESET%}";
+            echo "%{$C_YELLOW%}""vm""%{$C_RESET%}";
             return;
         fi
         echo "%{$C_DEFAULT%}""local""%{$C_RESET%}";
@@ -53,7 +53,7 @@ function get_hostname() {
     then
         echo "$datetime %{$C_MAGENTA%}""$host_role""%{$C_RESET%}";
     else
-        echo "$datetime %{$C_YELLOW%}""$host_role""%{$C_RESET%}";
+        echo "$datetime %{$C_DRED%}""$host_role""%{$C_RESET%}";
     fi
 }
 
