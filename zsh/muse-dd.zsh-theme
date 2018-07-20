@@ -30,10 +30,11 @@ fi
 
 function get_hostname() {
     host=$(hostname)
+    datetime=$(date +%H:%M:%S)
     envname=`cat /opt/datadog/etc/environment 2>&1 | cut -c 5- 2>&1`
 
     if [ -e /etc/update-motd.d/95-roles ]; then;
-        host_role=$(cat /etc/update-motd.d/95-roles | tail -n+6 | grep -vE 'Tags:' | grep -vE '^Instance Type:|^\*\*|^$' | grep -vE 'AZ: ' | grep -Ev 'common-node|monitoring-client|dog-base|encrypted-storage' | paste -d',' -s -)
+        host_role=$(cat /etc/update-motd.d/95-roles | tail -n+6 | grep -vE 'Tags:' | grep -vE '^Instance Type:|^\*\*|^$' | grep -vE 'AZ: ' | grep -Ev 'common-node|monitoring-client|dog-base|encrypted-storage|datacenter' | paste -d',' -s -)
     else;
         host_role=$(hostname)
     fi;
@@ -42,7 +43,7 @@ function get_hostname() {
     then
         if [[ $host == "dogbox" ]]
         then
-            echo "%{$C_YELLOW%}""vm""%{$C_RESET%}";
+            echo "%{$BC_DRED%}""vm""%{$C_RESET%}";
             return;
         fi
         echo "%{$C_DEFAULT%}""local""%{$C_RESET%}";
@@ -50,9 +51,9 @@ function get_hostname() {
     fi
     if [[ "$envname" == "staging" ]]
     then
-        echo "%{$C_MAGENTA%}""$host_role""%{$C_RESET%}";
+        echo "$datetime $host %{$C_MAGENTA%}""$host_role""%{$C_RESET%}";
     else
-        echo "%{$BC_DRED%}""$host_role""%{$C_RESET%}";
+        echo "$datetime $host %{$C_YELLOW%}""$host_role""%{$C_RESET%}";
     fi
 }
 

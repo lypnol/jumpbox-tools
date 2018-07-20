@@ -24,3 +24,8 @@ if [[ $(hostname) == *".local" ]]
 then
     source ~/.jumpbox-tools/zsh/custom_rc/local
 fi
+
+bindkey "^[[1;9D" backward-word
+bindkey "^[[1;9C" forward-word
+bindkey "^[[1;10D" beginning-of-line
+bindkey "^[[1;10C" end-of-line

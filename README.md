@@ -7,7 +7,7 @@ On an env, local or the VM:
 You shouldn't do this if you don't know what you are doing:
 
 ```
-curl -L https://raw.githubusercontent.com/Viq111/jumpbox-tools/master/bootstrap.sh | sh
+curl -L https://raw.githubusercontent.com/lypnol/jumpbox-tools/master/bootstrap.sh | sh
 ```
 
 ## Features
