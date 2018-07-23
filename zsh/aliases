@@ -2,6 +2,8 @@ alias ll="ls -l"
 alias la="ls -a"
 alias lla="ls -al"
 
+alias i="hostname"
+
 pydir () {
     python -c "import $1,os; print os.path.dirname($1.__file__)"
 }
