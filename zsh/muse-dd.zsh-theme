@@ -5,6 +5,11 @@ setopt promptsubst
 
 autoload -U add-zsh-hook
 
+C_WHITEB=$fg_bold[white]
+C_GREENB=$fg_bold[green]
+C_YELLOWB=$fg_bold[yellow]
+C_MAGENTAB=$fg_bold[magenta]
+C_CYANB=$fg_bold[cyan]
 C_RESET=$reset_color
 C_DEFAULT=$FG[004]
 C_PROMPT=$FG[002]
@@ -43,21 +48,20 @@ function get_hostname() {
     then
         if [[ $host == "dogbox" ]]
         then
-            echo "%{$C_YELLOW%}""vm""%{$C_RESET%}";
+            echo "%{$C_MAGENTAB%}""vm""%{$C_RESET%}:";
             return;
         fi
-        echo "%{$C_DEFAULT%}""local""%{$C_RESET%}";
         return
     fi
     if [[ "$envname" == "staging" ]]
     then
-        echo "$datetime %{$C_MAGENTA%}""$host_role""%{$C_RESET%}";
+        echo "%{$C_WHITEB%}$datetime %{$C_YELLOWB%}""$host_role""%{$C_RESET%}:";
     else
-        echo "$datetime %{$C_DRED%}""$host_role""%{$C_RESET%}";
+        echo "%{$C_WHITEB%}$datetime %{$C_GREENB%}""$host_role""%{$C_RESET%}:";
     fi
 }
 
-PROMPT='%{$C_RESET%}$(get_hostname):%{$C_DEFAULT%}%~%{$C_RESET%} %{$GIT_PROMPT_INFO%}$(git_prompt_info)%{$GIT_DIRTY_COLOR%}$(git_prompt_status)%{$C_RESET%}%{$C_PROMPT%}ᐅ%{$C_RESET%} '
+PROMPT='%{$C_RESET%}$(get_hostname)%{$C_DEFAULT%}%~%{$C_RESET%} %{$GIT_PROMPT_INFO%}$(git_prompt_info)%{$GIT_DIRTY_COLOR%}$(git_prompt_status)%{$C_RESET%}%{$C_PROMPT%}ᐅ%{$C_RESET%} '
 
 #RPS1="${return_code}"
 
