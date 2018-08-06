@@ -68,3 +68,7 @@ howold ()
 mq () {
     sudogq metric_query $@
 }
+
+ibv() {
+    hosts_by_role $1 | dmc -n 8 "curl -s localhost:6060/debug/vars" | grep -v Error | grep -v Warning | grep -Eo "i-[a-z0-9]{17}|\"commit\": \"[a-z0-9]{7}\"" | uniq |grep -Eo "i-[a-z0-9]{17}|\"[a-z0-9]{7}\"" | paste -s -d",\n" | awk -F, '{tots[$2]=$1 "," tots[$2]}END{for (t in tots) print t "(" split(tots[t],a,",")-1  ")" ":" tots[t]}' | xargs -I% bash -c "echo '%' | sed s'/.$//'" | sed s'/$/\n/' 
+}
