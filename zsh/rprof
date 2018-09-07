@@ -79,3 +79,9 @@ rprof() {
     pid=$(ps aux | grep -v grep | grep "ssh -f -o ExitOnForwardFailure=yes -L $port" | awk '{print $2}')
     echo "ssh tunnel pid is $pid don't forget to kill it when done"
 }
+
+killrprof() {
+    for pid in $(rprofpid); do
+        kill "$pid"
+    done
+}
