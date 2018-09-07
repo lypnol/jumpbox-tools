@@ -9,7 +9,11 @@ fi
 # Clean everything
 cd ~
 # Don't delete .ssh otherwise you cannot get in!!
-rm -rf .bin* .cache* .chef* .config* .lesshst .oh-my-zsh .zcomp* .zsh*
+rm -rf .bin* .chef* .config* .oh-my-zsh
+if [ -f /opt/datadog/etc/environment ]; then
+    rm -rf .zcomp* .zsh* .cache* .lesshst
+fi
+
 # In case we are re-running it
 rm -rf .jumpbox-tools .oh-my-zsh
 

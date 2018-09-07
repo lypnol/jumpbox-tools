@@ -9,5 +9,13 @@ if [ ! -d ~/.oh-my-zsh ]; then
 else
     echo "OMZ already installed"
 fi
-rm -f ~/.zshrc.pre-oh-my-zsh
+
+# If env is not local
+if [ -f /opt/datadog/etc/environment ]; then
+	rm -f ~/.zshrc.pre-oh-my-zsh
+# else restore users zshrc
+else
+	rm -f ~/.zshrc
+	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+fi
 touch ~/.z
