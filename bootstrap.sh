@@ -25,4 +25,4 @@ cd ~/.jumpbox-tools
 ./links.sh
 
 exec zsh
-. ~/.zshrc
+source ~/.zshrc
