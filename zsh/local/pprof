@@ -1,0 +1,61 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+function _pprof_usage() {
+    echo "pprof is a port forwarder to profile go apps"
+    echo "usage: pprof env type target profile [port]"
+    echo ""
+    echo "    - env     remote evironment: 'prod' or 'staging'"
+    echo "    - type    lookup type: 'a': ip address, 'r': role, 'i': instance id"
+    echo "    - target  service running app to profile"
+    echo "    - port    specify local tunnel port, default 8080"
+    echo "    - profile specify profile type: 'profile?seconds=30', 'heap', etc."
+}
+
+# ssh port forwarder to profile go apps
+if [ $# -le 2 ]; then
+    _pprof_usage
+    return 1
+fi
+
+ip=""
+if [ "$2" = "a" ]; then
+    ip=$3
+elif [ "$2" = "i" ]; then
+    ip=`ipofi "$1" "$3"`
+elif [ "$2" = "r" ]; then
+    ip=`ipofr "$1" "$3"`
+else;
+    _pprof_usage
+    return 1
+fi
+
+if [ "$ip" = "" ]; then
+    return 1
+fi
+
+profile="profile?seconds=30"
+if [ $# -ge 4 ]; then
+    port=$4
+fi
+
+port=8080
+if [ $# -ge 5 ]; then
+    port=$5
+fi
+
+tdir=$(mktemp -d /tmp/${ip}.XXXXXX)
+socket="${ip}/master.sock"
+function cleanup() {
+    ssh -S $socket -O exit $ip
+    rm -rf $tdir
+}
+trap cleanup EXIT
+
+echo "using ip target $ip"
+echo "using local port $port"
+
+ssh -f -N -M -S $socket -L "$port":localhost:6060 "$ip"
+go tool pprof "http://localhost:$port/debug/pprof/$profile"

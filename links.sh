@@ -18,6 +18,9 @@ if [ -f /opt/datadog/etc/environment ]; then
     # ssh
     rmlink ssh/rc ~/.ssh/rc
     rmlink ssh/config ~/.ssh/config
+else
+    mkdir -p ~/bin
+    rmlink zsh/local/pprof ~/bin/pprof
 fi
 
 # zsh themes

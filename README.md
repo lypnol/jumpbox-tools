@@ -21,11 +21,11 @@ curl -L https://raw.githubusercontent.com/lypnol/jumpbox-tools/master/bootstrap.
 ## Aliases
 
 - `refreshtools` to update your jumpbox-tools version
-- [ENV] `ji` to jump to an instance id
-- [ENV] `jr` to jump to a random instance of a role
-- [ENV] `pg` on a postgres box to log into pg
-- [ENV] `pydir`, `pycd`, `pymod` to jump to python modules
-- [ENV] `howold` to get instance age
-- [VM] `gocheck` in a go project to run `fmt`, `vet`, `lint`
-- [VM] `goforit` to jump to dd-go folder
-
+- [ENV]     `ji` to jump to an instance id
+- [ENV]     `jr` to jump to a random instance of a role
+- [ENV]     `pg` on a postgres box to log into pg
+- [ENV]     `pydir`, `pycd`, `pymod` to jump to python modules
+- [ENV]     `howold` to get instance age
+- [VM]      `gocheck` in a go project to run `fmt`, `vet`, `lint`
+- [VM]      `goforit` to jump to dd-go folder
+- [LOCAL]   `pprof` does go profiles from remote apps

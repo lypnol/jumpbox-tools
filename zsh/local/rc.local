@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 export LC_ALL="en_US.UTF-8"
 
 export ZSH="/Users/$USER/.oh-my-zsh"
@@ -33,7 +35,7 @@ if [ -f /usr/local/Cellar/grep/3.1/bin/grep ]; then
   export PATH="/usr/local/Cellar/grep/3.1/bin/:$PATH"
 fi
 
-export PATH="$GOPATH/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:$PATH"
+export PATH="$HOME/bin:$GOPATH/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:$PATH"
 
 eval "$(rbenv init -)"
 
@@ -62,4 +64,4 @@ bindkey "^[[1;10D" beginning-of-line
 bindkey "^[[1;10C" end-of-line
 
 # rprof helper
-source ~/.jumpbox-tools/zsh/rprof
+source ~/.jumpbox-tools/zsh/local/helpers
