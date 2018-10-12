@@ -25,3 +25,12 @@ ipofi() {
     
     ssh -tt "$jumpbox" "ssh -G $2 | awk '/^hostname/{ print \$2 }'" 2>/dev/null | grep -oP '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -n 1
 }
+
+refreshtools(){
+    cd ~/.jumpbox-tools
+    git pull
+    ./installs.sh
+    ./links.sh
+    cd -
+    exec zsh
+}
