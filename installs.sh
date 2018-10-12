@@ -6,16 +6,11 @@ if [ ! -d ~/.oh-my-zsh ]; then
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 	cd ~
 	touch .z
+	if [ ! -f /opt/datadog/etc/environment ]; then
+		mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+	fi
 else
     echo "OMZ already installed"
 fi
 
-# If env is not local
-if [ -f /opt/datadog/etc/environment ]; then
-	rm -f ~/.zshrc.pre-oh-my-zsh
-# else restore users zshrc
-else
-	rm -f ~/.zshrc
-	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
-fi
 touch ~/.z

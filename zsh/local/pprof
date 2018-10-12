@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/.jumpbox-tools/zsh/local/helpers
+
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -17,28 +19,28 @@ function _pprof_usage() {
 # ssh port forwarder to profile go apps
 if [ $# -le 2 ]; then
     _pprof_usage
-    return 1
+    exit 1
 fi
 
 ip=""
 if [ "$2" = "a" ]; then
     ip=$3
 elif [ "$2" = "i" ]; then
-    ip=`ipofi "$1" "$3"`
+    ip=$(ipofi "$1" "$3")
 elif [ "$2" = "r" ]; then
-    ip=`ipofr "$1" "$3"`
-else;
+    ip=$(ipofr "$1" "$3")
+else
     _pprof_usage
-    return 1
+    exit 1
 fi
 
 if [ "$ip" = "" ]; then
-    return 1
+    exit 1
 fi
 
 profile="profile?seconds=30"
 if [ $# -ge 4 ]; then
-    port=$4
+    profile=$4
 fi
 
 port=8080
@@ -47,7 +49,7 @@ if [ $# -ge 5 ]; then
 fi
 
 tdir=$(mktemp -d /tmp/${ip}.XXXXXX)
-socket="${ip}/master.sock"
+socket="${tdir}/master.sock"
 function cleanup() {
     ssh -S $socket -O exit $ip
     rm -rf $tdir

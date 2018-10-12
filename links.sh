@@ -20,6 +20,7 @@ if [ -f /opt/datadog/etc/environment ]; then
     rmlink ssh/config ~/.ssh/config
 else
     mkdir -p ~/bin
+    rmlink zsh/local/rc.local ~/.zshrc
     rmlink zsh/local/pprof ~/bin/pprof
 fi
 
