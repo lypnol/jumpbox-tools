@@ -28,7 +28,7 @@ ipofi() {
 
 refreshtools(){
     cd ~/.jumpbox-tools
-    git pull
+    git pull origin master
     ./installs.sh
     ./links.sh
     cd -
