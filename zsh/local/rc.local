@@ -27,6 +27,8 @@ export HOMEBREW_CASK_OPTS=--require-sha
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
+export CGO_CFLAGS_ALLOW="-fno-builtin-memcmp"
+export CGO_CXXFLAGS_ALLOW="-fno-builtin-memcmp|-lpthread"
 
 function goforit() { cd $GOPATH/src/github.com/Datadog/dd-go; }
 function dd() { cd $DATADOG_ROOT; }
@@ -62,6 +64,13 @@ bindkey "^[[1;9D" backward-word
 bindkey "^[[1;9C" forward-word
 bindkey "^[[1;10D" beginning-of-line
 bindkey "^[[1;10C" end-of-line
+bindkey "^[[1;e~" backward-delete-word
 
 # rprof helper
 source ~/.jumpbox-tools/zsh/local/helpers
+
+# api keys
+if [ -f ~/.api_keys ]; then
+    source ~/.api_keys
+fi
+

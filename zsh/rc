@@ -29,3 +29,4 @@ bindkey "^[[1;9D" backward-word
 bindkey "^[[1;9C" forward-word
 bindkey "^[[1;10D" beginning-of-line
 bindkey "^[[1;10C" end-of-line
+bindkey "^[[1;e~" backward-delete-word
