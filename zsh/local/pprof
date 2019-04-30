@@ -34,7 +34,7 @@ else
     exit 1
 fi
 
-if [ "$ip" = "" ]; then
+if [ -z "$ip" ]; then
     echo "couldn't find ip address of target $1 $2 $3"
     exit 1
 fi

@@ -17,13 +17,13 @@ envjumbox() {
 ipofr() {
     local jumpbox=$(envjumbox "$1")
     
-    ssh -tt "$jumpbox" "ssh -G \$(hosts_by_role $2 | head -n 1) | awk '/^hostname/{ print \$2 }'" 2>/dev/null | grep -oP '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -n 1
+    ssh -tt "$jumpbox" "ssh -G \$(hosts_by_role $2 | head -n 1) | awk '/^hostname/{ print \$2 }'" 2>/dev/null | ggrep -oP '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -n 1
 }
 
 ipofi() {
     local jumpbox=$(envjumbox "$1")
     
-    ssh -tt "$jumpbox" "ssh -G $2 | awk '/^hostname/{ print \$2 }'" 2>/dev/null | grep -oP '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -n 1
+    ssh -tt "$jumpbox" "ssh -G $2 | awk '/^hostname/{ print \$2 }'" 2>/dev/null | ggrep -oP '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -n 1
 }
 
 refreshtools(){
