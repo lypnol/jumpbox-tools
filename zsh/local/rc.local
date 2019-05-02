@@ -75,6 +75,6 @@ if [ -f ~/.api_keys ]; then
 fi
 
 # custom zshrc
-if [ -f "~/.zshrc.extra" ]; then
+if [ -f ~/.zshrc.extra ]; then
     source ~/.zshrc.extra
 fi
