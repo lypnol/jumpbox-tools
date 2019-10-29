@@ -1,5 +1,7 @@
+#!/bin/zsh
+
 function get_datetime() {
-        echo $(date +%H:%M)
+    echo $(date +%H:%M)
 }
 
 local ret_status="%(?:%{$fg_bold[green]%}ᐅ :%{$fg_bold[red]%}ᐅ )"
