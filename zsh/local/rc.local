@@ -22,12 +22,12 @@ alias grep='ggrep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 export CLICOLOR=1
 
 export DATADOG_ROOT="/Users/$USER/Desktop/datadog"
-export PATH="$PATH:$GOROOT/bin:$DATADOG_ROOT/devtools/bin"
+export PATH="$PATH:$GOROOT/bin:$DATADOG_ROOT/devtools/bin:/usr/local/Cellar/python@2/2.7.15_2/bin"
 
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 export HOMEBREW_CASK_OPTS=--require-sha
 
-eval "$(gimme 1.13.1)"
+eval "$(gimme 1.13.4)"
 export GOPATH=$HOME/go
 export CGO_CFLAGS_ALLOW="-fno-builtin-memcmp"
 export CGO_CXXFLAGS_ALLOW="-fno-builtin-memcmp|-lpthread"
@@ -82,6 +82,6 @@ fi
 
 source /usr/local/opt/kube-ps1/share/kube-ps1.sh
 PROMPT='$(kube_ps1)'$PROMPT
-
+kubeoff
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
